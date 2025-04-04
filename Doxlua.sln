@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doxlua", "Doxlua\Doxlua.csproj", "{682DF863-E0CB-420E-8D0D-99C885EA7F83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doxlua.Tests", "Doxlua.Tests\Doxlua.Tests.csproj", "{E53D5C8D-4940-462C-BAAF-945C8F95F526}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{682DF863-E0CB-420E-8D0D-99C885EA7F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682DF863-E0CB-420E-8D0D-99C885EA7F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682DF863-E0CB-420E-8D0D-99C885EA7F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682DF863-E0CB-420E-8D0D-99C885EA7F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53D5C8D-4940-462C-BAAF-945C8F95F526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53D5C8D-4940-462C-BAAF-945C8F95F526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53D5C8D-4940-462C-BAAF-945C8F95F526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53D5C8D-4940-462C-BAAF-945C8F95F526}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
