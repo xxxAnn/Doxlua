@@ -135,6 +135,118 @@ namespace Doxlua.Tokenizer
         }
     }
 
+    namespace Literals
+    {
+        enum LiteralType
+        {
+            String, // contain a string
+            Number, // contain an integer or float
+            Boolean, // contain a boolean value
+            Nil // contain a null value
+        }
+
+        // the literal type is more complex than the other types
+        // because it can contain a string, number, boolean, or nil
+        // on top of the literaltype
+        class Literal : LineNumberTracker, IToken<LiteralType>
+        {
+            LiteralType Type;
+            LiteralValue Value;
+            
+            class LiteralValue
+            {
+                public string? StringValue { get; set; }
+                public double? NumberValue { get; set; }
+                public bool? BooleanValue { get; set; }
+                public object? NilValue { get; set; }
+            }
+
+            public Literal(string value, int lineNumber) : base(lineNumber)
+            {
+                Type = LiteralType.String;
+                Value = new LiteralValue { StringValue = value };
+            }
+
+            public Literal(double value, int lineNumber) : base(lineNumber)
+            {
+                Type = LiteralType.Number;
+                Value = new LiteralValue { NumberValue = value };
+            }
+
+            public Literal(bool value, int lineNumber) : base(lineNumber)
+            {
+                Type = LiteralType.Boolean;
+                Value = new LiteralValue { BooleanValue = value };
+            }
+
+            public Literal(int lineNumber) : base(lineNumber)
+            {
+                Type = LiteralType.Nil;
+                Value = new LiteralValue { NilValue = null };
+            }
+
+            public string GetTType()
+            {
+                return TokenType.Literal;
+            }
+
+            public LiteralType GetValue()
+            {
+                return Type;
+            }
+
+            public string GetInnerString()
+            {
+                if (Type == LiteralType.String)
+                {
+                    return Value.StringValue ?? string.Empty;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Literal is not a string");
+                }
+            }
+
+            public double GetInnerNumber()
+            {
+                if (Type == LiteralType.Number)
+                {
+                    return Value.NumberValue ?? 0;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Literal is not a number");
+                }
+            }
+
+            public bool GetInnerBoolean()
+            {
+                if (Type == LiteralType.Boolean)
+                {
+                    return Value.BooleanValue ?? false;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Literal is not a boolean");
+                }
+            }
+
+            public object GetInnerNil()
+            {
+                if (Type == LiteralType.Nil)
+                {
+                    return Value.NilValue;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Literal is not nil");
+                }
+            }
+        }
+        
+
+    }
+
 }
 
 
