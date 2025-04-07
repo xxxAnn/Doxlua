@@ -114,7 +114,9 @@ namespace Doxlua.Tokenizer
                 .Or(Char(']').ThenReturn(PunctuationType.BracketClose))
                 .Or(Char(',').ThenReturn(PunctuationType.Comma))
                 .Or(Char('.').ThenReturn(PunctuationType.Dot))
-                .Or(Char(':').ThenReturn(PunctuationType.Colon)));
+                .Or(Char(':').ThenReturn(PunctuationType.Colon)))
+                .Or(Char('#').ThenReturn(PunctuationType.Hashtag))
+                .Or(Char(';').ThenReturn(PunctuationType.Semicolon));
 
         public static Parser<char, TokenWithLine> PunctuationToken =>
             CommonParsers.CurrentLine.Then(PunctuationParser, (line, p) => new TokenWithLine(new Punctuation(p, line), line));

@@ -363,6 +363,8 @@ namespace Doxlua.Tokenizer
         BracketClose,
         Dot,
         Colon,
+        Semicolon,
+        Hashtag,
         Comma,
         Comment,
         MultilineComment,
