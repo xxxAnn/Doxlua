@@ -62,7 +62,7 @@ namespace Doxlua.Tokenizer
     {
         public static string Info(IToken token)
         {
-            return $"{token.GetTType()} {token.GetLineNumber()}";
+            return $"{token.GetTType()} L{token.GetLineNumber()}";
         }
     }
 
@@ -75,14 +75,9 @@ namespace Doxlua.Tokenizer
         public const string Punctuation = "Punctuation";
     }
 
-    class LineNumberTracker
+    class LineNumberTracker(int lineNumber)
     {
-        private int LineNumber;
-
-        public LineNumberTracker(int lineNumber)
-        {
-            LineNumber = lineNumber;
-        }
+        private readonly int LineNumber = lineNumber;
 
         public int GetLineNumber()
         {
@@ -97,14 +92,9 @@ namespace Doxlua.Tokenizer
     /// <summary>
     /// Identifier is a name that represents a variable, function, or table
     /// </summary>
-    class Identifier : LineNumberTracker, IToken<string>
+    class Identifier(string value, int lineNumber) : LineNumberTracker(lineNumber), IToken<string>
     {
-        string Value;
-        
-        public Identifier(string value, int lineNumber) : base(lineNumber)
-        {
-            Value = value;
-        }
+        readonly string Value = value;
 
         public string GetTType()
         {
@@ -128,33 +118,39 @@ namespace Doxlua.Tokenizer
 {
     enum KeywordType
     {
-        function,
+        // Our special keywords
         effect,
         trigger,
         value,
-        local,
         scope,
+        lua,
+        // Lua keywords
+        and,
+        @break,
+        @in,
+        @not,
+        @or,
+        @repeat,
+        @return,
+        @then,
+        @until,
+        @while,
+        local,
+        function,
         @if,
         @else,
         @elseif,
         @for,
-        @while,
         @do,
-        @end,
-        @return
+        @end
     }
 
     /// <summary>
     /// Keyword is a reserved word in Lua that has a special meaning
     /// </summary>
-    class Keyword : LineNumberTracker, IToken<KeywordType>
+    class Keyword(KeywordType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<KeywordType>
     {
-        KeywordType Value;
-
-        public Keyword(KeywordType value, int lineNumber) : base(lineNumber)
-        {
-            Value = value;
-        }
+        readonly KeywordType Value = value;
 
         public string GetTType()
         {
@@ -323,6 +319,7 @@ namespace Doxlua.Tokenizer
         Divide,
         Modulus,
         Power,
+        Assignment,
         Concatenate,
         Equal,
         NotEqual,
@@ -332,14 +329,9 @@ namespace Doxlua.Tokenizer
         GreaterThanOrEqual
     }
 
-    class Operator : LineNumberTracker, IToken<OperatorType>
+    class Operator(OperatorType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<OperatorType>
     {
-        OperatorType Value;
-
-        public Operator(OperatorType value, int lineNumber) : base(lineNumber)
-        {
-            Value = value;
-        }
+        readonly OperatorType Value = value;
 
         public string GetTType()
         {
@@ -373,17 +365,13 @@ namespace Doxlua.Tokenizer
         Colon,
         Comma,
         Comment,
+        MultilineComment,
         EOL // end of line
     }
 
-    class Punctuation : LineNumberTracker, IToken<PunctuationType>
+    class Punctuation(PunctuationType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<PunctuationType>
     {
-        PunctuationType Value;
-
-        public Punctuation(PunctuationType value, int lineNumber) : base(lineNumber)
-        {
-            Value = value;
-        }
+        readonly PunctuationType Value = value;
 
         public string GetTType()
         {
