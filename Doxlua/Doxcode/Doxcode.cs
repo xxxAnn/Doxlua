@@ -1,60 +1,111 @@
-namespace Doxcode
+using System.Collections;
+using System.Collections.Specialized;
+
+namespace Doxlua.Doxcode
 {
 
-    public enum BytecodeMode : byte
+    public static class BytecodeMode
     {
-        Execute = 0b0000,
-        Write = 0b0001,
+        public const byte Execute = 0b0;
+        public const byte Write   = 0b1;
     }
 
-    public enum BytecodeOp : byte
+    public static class BytecodeOp
     {
-        GetGlobal = 0b00000000,
-        LoadConst = 0b00000001,
-        FuncCall = 0b00000010,
-
+        public const byte GetGlobal = 0b0000000;
+        public const byte LoadConst = 0b0000001;
+        public const byte Call      = 0b0010010; 
     }
 
 
     /// <summary>
     /// A bytecode instruction.
-    /// Contains eight bytes of data
-    /// or 64 bits.
-    /// The first byte is the mode of the instruction.
-    /// The second byte is the operation of the instruction.
-    /// The remaining six bytes are the arguments of the instruction.
+    /// Contains four bytes of data
+    /// or 32 bits.
+    /// The first bit is the mode of the instruction.
+    /// The next seven bits are the opcode of the instruction.
+    /// There are 3 bytes of remaining argument data.
     /// </summary>
-    public readonly struct Bytecode
-    {
-        // 1 byte
-        public BytecodeMode Mode { get; }
-        // 1 byte
-        public BytecodeOp Op { get; }
-
-        // maximum of 6 bytes
-        public byte[] Args { get; }
-
-        public Bytecode(BytecodeMode mode, BytecodeOp op, byte[] args)
+    public static class Bytecode {
+        public static bool IsExecute(byte[] code)
         {
-            // Verification
-            if (args.Length > 6)
-                throw new ArgumentException("Args length cannot be greater than 6 bytes.");
+            return (code[0] & 0b10000000) == BytecodeMode.Execute;
+        }
+
+        public static byte GetOp(byte[] code)
+        {
+            return  (byte)(code[0] & 0b01111111);
+        }
+
+        public static byte GetArg(byte[] code, int index)
+        {
+            if (index < 0 || index > code.Length - 2)
+                throw new ArgumentOutOfRangeException(nameof(index), $"index must be between 0 and {code.Length - 2}");
+            return code[index + 1];
+        }
+
+        public static byte NumArgs(byte[] code)
+        {
+            return (byte)(code.Length - 1);
+        }
+
+        public static byte[] ToByteArray(byte mode, byte opcode, byte[] args)
+        {
+            if (args.Length > 3)
+                throw new ArgumentException("args must be at most 3 bytes long");
+
+            byte[] code = new byte[args.Length + 1];
+            code[0] = (byte)(mode << 7 | opcode);
+            for (int i = 0; i < args.Length; i++)
+            {
+                code[i + 1] = args[i];
+            }
+
+            return code;
             
-            Mode = mode;
-            Op = op;
-            Args = args;
         }
+        
 
-        public Bytecode(byte mode, byte op, byte[] args)
+    }
+
+    /// <summary>
+    /// Wrapper around an array of bytes[4]
+    /// </summary>
+    public class Doxcode(byte[][] code) : IEnumerable<byte[]>, IEnumerator<byte[]>
+    {
+        
+        private readonly byte[][] _code = code;
+        private int _index = -1;
+
+        public byte[] Current => _code[_index];
+
+        object IEnumerator.Current => Current;
+
+        public void Dispose()
         {
-            Mode = (BytecodeMode)mode;
-            Op = (BytecodeOp)op;
-            // Verification
-            if (args.Length > 6)
-                throw new ArgumentException("Args length cannot be greater than 6 bytes.");
-            Args = args;
+            GC.SuppressFinalize(this);
         }
 
+        public IEnumerator<byte[]> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public bool MoveNext()
+        {
+            _index++;
+            return _index < _code.Length;
+        }
+
+        public void Reset()
+        {
+            _index = -1;
+        }
 
     }
 }

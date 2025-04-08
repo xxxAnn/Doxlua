@@ -4,10 +4,10 @@
 using Xunit;
 using Doxlua.Tokenizer;
 
-public class UnitTest1
+public class TokenizationTests
 {
     [Fact]
-    public void Test1()
+    public void BasicFile()
     {
         // The file is Doxlua.Tests/Testfiles/Basic.lua
         // We want to get its tokenization
@@ -23,6 +23,6 @@ public class UnitTest1
         // Print infos separated by ','
         string result = string.Join(", ", infos);
         // Print the result
-        System.Console.WriteLine(result);
+        //System.Console.WriteLine(result);
     }
 }
