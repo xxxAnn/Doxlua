@@ -4,12 +4,17 @@ namespace Doxlua.VM
     {
         // Globals
         public Dictionary<string, IDoxValue> Globals { get; set; }
+
+        const int MAX_STACK_SIZE = 2^8;
         // Stack
         private Stack<IDoxValue> _stack { get; set; }
 
         // Stack operations
         public void Push(IDoxValue value)
         {
+            if (_stack.Count >= MAX_STACK_SIZE)
+                // Stack overflow
+                throw new Exception("Stack overflow");
             _stack.Push(value);
         }
         public IDoxValue[] Pop(int n)

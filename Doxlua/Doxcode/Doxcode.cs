@@ -71,11 +71,11 @@ namespace Doxlua.Doxcode
     /// <summary>
     /// Wrapper around an array of bytes[4]
     /// </summary>
-    public class DoxCode(byte[][] code, VM.DoxValue[] consts) : IEnumerable<byte[]>, IEnumerator<byte[]>
+    public class DoxCode(byte[][] code, VM.IDoxValue[] consts) : IEnumerable<byte[]>, IEnumerator<byte[]>
     {
         
         private readonly byte[][] _code = code;
-        private readonly VM.DoxValue[] _consts = consts;
+        private readonly VM.IDoxValue[] _consts = consts;
         private int _index = -1;
 
         public byte[] Current => _code[_index];
@@ -87,7 +87,7 @@ namespace Doxlua.Doxcode
             GC.SuppressFinalize(this);
         }
 
-        public VM.DoxValue GetConstant(int index)
+        public VM.IDoxValue GetConstant(int index)
         {
             if (index < 0 || index >= _consts.Length)
                 throw new ArgumentOutOfRangeException(nameof(index), $"index must be between 0 and {_consts.Length - 1}");
