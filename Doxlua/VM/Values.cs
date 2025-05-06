@@ -19,7 +19,7 @@ namespace Doxlua.VM
         // Thread = 7,
     }
 
-    public class DoxFunction : IDoxValue
+    public struct DoxFunction : IDoxValue
     {
 
         public delegate int DoxFunctionDelegate(DoxState state);
@@ -42,7 +42,7 @@ namespace Doxlua.VM
         }
     }
 
-    public class DoxNil : IDoxValue
+    public struct DoxNil : IDoxValue
     {
         public DoxValueType GetDoxType()
         {
@@ -50,7 +50,7 @@ namespace Doxlua.VM
         }
     }
 
-    public class DoxBoolean : IDoxValue
+    public struct DoxBoolean : IDoxValue
     {
         private bool _value;
 
@@ -70,7 +70,7 @@ namespace Doxlua.VM
         }
     }
 
-    public class DoxNumber : IDoxValue
+    public struct DoxNumber : IDoxValue
     {
         private double _value;
 
@@ -90,7 +90,7 @@ namespace Doxlua.VM
         }
     }
 
-    public class DoxString : IDoxValue
+    public struct DoxString : IDoxValue
     {
         private string _value;
 
@@ -110,26 +110,41 @@ namespace Doxlua.VM
         }
     }
 
-    public class DoxTable : IDoxValue
+    public struct DoxTable : IDoxValue
     {
-        private Dictionary<string, IDoxValue> _table;
+
+        private readonly Dictionary<IDoxValue, IDoxValue> _table;
 
         public DoxTable()
         {
-            _table = new Dictionary<string, IDoxValue>();
+            _table = [];
         }
 
         public void Set(string key, IDoxValue value)
         {
-            _table[key] = value;
+            Set(new DoxString(key), value);
         }
 
         public IDoxValue Get(string key)
         {
-            return _table[key];
+            return Get(new DoxString(key));
         }
 
-        public Dictionary<string, IDoxValue> GetValue()
+        public void Set(IDoxValue key, IDoxValue value)
+        {
+            _table[key] = value;
+        }
+
+        public IDoxValue Get(IDoxValue key)
+        {
+            if (_table.TryGetValue(key, out var value))
+            {
+                return value;
+            }
+            return new DoxNil();
+        }
+
+        public Dictionary<IDoxValue, IDoxValue> GetValue()
         {
             return _table;
         }

@@ -4,17 +4,54 @@ using System.Collections.Specialized;
 namespace Doxlua.Doxcode
 {
 
+    // 1 bit
     public static class BytecodeMode
     {
         public const byte Execute = 0b0;
         public const byte Write   = 0b1;
     }
 
+    // 7 bits
     public static class BytecodeOp
     {
-        public const byte GetGlobal = 0b0000000;
-        public const byte LoadConst = 0b0000001;
-        public const byte Call      = 0b0010010; 
+        // Execute Mode
+
+        /// GetGlobal FROMINDEX X X
+        /// Insert Global at FROMINDEX index onto stack
+        public const byte GetGlobal          = 0b0000000;
+        /// LoadConst FROMINDEX X X
+        /// Insert Constant at FROMINDEX index onto stack
+        public const byte LoadConst          = 0b0000001;
+        /// Call ARGCOUNT X X
+        /// Call function at with ARGCOUNT arguments from the stack 
+        public const byte Call               = 0b0000010; 
+
+
+        /// LoadEnv X X X
+        /// Load the environment table onto the stack
+        public const byte LoadEnv            = 0b0000011;
+        
+
+        /// Write Mode
+
+        /// Write X X X
+        /// Writes the string value atop the stack
+        /// `STACKINDEX = {`
+        public const byte OpenBlock          = 0b1000000;
+        /// Write X X X
+        /// Writes the end of the block
+        /// `}`
+        public const byte CloseBlock         = 0b1000001;
+        /// Write X X X
+        /// Writes the pair of the two elements atop the stack
+        /// `STACKINDEX1 = `STACKINDEX2`
+        public const byte Pair               = 0b1000010;
+        /// Write X X X
+        /// Writes the element atop the stack
+        /// `STACKINDEX`
+        public const byte Element            = 0b1000011;
+
+
     }
 
 
@@ -49,7 +86,7 @@ namespace Doxlua.Doxcode
             return (byte)(code.Length - 1);
         }
 
-        public static byte[] ToByteArray(byte mode, byte opcode, byte[] args)
+        public static byte[] ToByteArray(byte mode, byte opcode, params byte[] args)
         {
             if (args.Length > 3)
                 throw new ArgumentException("args must be at most 3 bytes long");

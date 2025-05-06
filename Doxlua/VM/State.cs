@@ -1,21 +1,37 @@
 namespace Doxlua.VM
 {
+
+    public static class GlobalCodes 
+    {
+        public static readonly byte Nil = 0;
+        public static readonly byte True = 1;
+        public static readonly byte False = 2;
+        public static readonly byte TableAccess = 3;
+    }
     public class DoxState
     {
+        
         // Globals
-        public Dictionary<string, IDoxValue> Globals { get; set; }
+        public IDoxValue[] Globals { get; set; }
+        public string[] Consts { get; set; }
 
-        const int MAX_STACK_SIZE = 2^8;
+        public int Indent { get; set; } = 0;
+
+        public string? File;
+
+        const int MAXstack_SIZE = 2^8;
         // Stack
-        private Stack<IDoxValue> _stack { get; set; }
+        private Stack<IDoxValue> Stack { get; set; }
+        private Stack<IDoxValue> Envs { get; set; }
+
 
         // Stack operations
         public void Push(IDoxValue value)
         {
-            if (_stack.Count >= MAX_STACK_SIZE)
+            if (Stack.Count >= MAXstack_SIZE)
                 // Stack overflow
                 throw new Exception("Stack overflow");
-            _stack.Push(value);
+            Stack.Push(value);
         }
         public IDoxValue[] Pop(int n)
         {
@@ -23,7 +39,7 @@ namespace Doxlua.VM
             IDoxValue[] values = new IDoxValue[n];
             for (int i = 0; i < n; i++)
             {
-                values[i] = _stack.Pop();
+                values[i] = Stack.Pop();
             }
             return values;
         }
@@ -31,32 +47,100 @@ namespace Doxlua.VM
         public IDoxValue Pop()
         {
             // Pop one value from the stack
-            return _stack.Pop();
+            return Stack.Pop();
         }
 
-        public DoxState()
+        public DoxState(string[] consts)
         {
-            Globals = new Dictionary<string, IDoxValue>();
-            _stack = new Stack<IDoxValue>();
+            Globals = [];
+            Consts = consts;
+            Stack = new Stack<IDoxValue>();
+            Envs = new Stack<IDoxValue>();
+            Envs.Push(DoxTableFactory.CreateTable());
 
             InitializeDefaultGlobals();
+        }
+
+        public void SetFile(string file)
+        {
+            File = file;
+        }
+        public string? GetFile()
+        {
+            return File;
+        }
+        public void LayerDown() 
+        {
+            // Copy the top of the Env stack to the top of the stack
+            // This is used to create a new environment for the function
+            
+            if (Envs.Count == 0)
+                throw new Exception("No environment to copy");
+            Envs.Push(
+                Envs.Peek()
+            );
         }
 
         private void InitializeDefaultGlobals()
         {
             // Initialize default globals
-            Globals["nil"] = new DoxNil();
-            Globals["true"] = new DoxBoolean(true);
-            Globals["false"] = new DoxBoolean(false);
-            Globals["print"] = new DoxFunction(FunctionMarket.PrintFunction);
+            Globals[GlobalCodes.Nil] = new DoxNil();
+            Globals[GlobalCodes.True] = new DoxBoolean(true);
+            Globals[GlobalCodes.False] = new DoxBoolean(false);
+            // Dynamic Global
+
+            Globals[GlobalCodes.TableAccess] = new DoxFunction(FunctionMarket.TableAccess);
+        }
+
+        public IDoxValue[] GetArgs(int n)
+        {
+            return Pop(n);
+        }
+
+        public void Return(IDoxValue value)
+        {
+            Push(value);
+        }
+    }
+
+    public static class DoxTableFactory
+    {
+        public static DoxTable CreateTable()
+        {
+            var table = new DoxTable();
+            table.Set("print", new DoxFunction(FunctionMarket.PrintFunction));
+
+            return table;
         }
     }
 
     public static class FunctionMarket
     {
+
+        // 0 = OK
+        // 1 = Expected Table for table access
+        // 2 = Expected String or Number for table access
+
+        public static int TableAccess(DoxState state)
+        {
+            IDoxValue[] arg = state.GetArgs(2);
+
+            if (arg[0].GetDoxType() != DoxValueType.Table)
+                return 1;
+
+            if (arg[1].GetDoxType() != DoxValueType.String && arg[1].GetDoxType() != DoxValueType.Number)
+                return 2;
+
+            var table = (DoxTable)arg[0];
+            var key = ((DoxString)arg[1]).GetValue();
+
+            state.Return(table.Get(key));
+
+            return 0;
+        }
         public static int PrintFunction(DoxState state)
         {
-            IDoxValue[] arg = GetArgs(state, 1);
+            IDoxValue[] arg = state.GetArgs(1);
 
             string str = arg[0].GetDoxType() switch
             {
@@ -66,12 +150,15 @@ namespace Doxlua.VM
                 DoxValueType.String => ((DoxString)arg[0]).GetValue(),
                 _ => "unknown"
             };
+
+            if (str == "unknown")
+                return 1;
+
+            Console.WriteLine(str);
+
             return 0;
         }
 
-        public static IDoxValue[] GetArgs(DoxState state, int n)
-        {
-            return state.Pop(n);
-        }
+
     }
 }

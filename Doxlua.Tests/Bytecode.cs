@@ -47,4 +47,8 @@ public class BytecodeTests
         Assert.Throws<ArgumentOutOfRangeException>(() => Bytecode.GetArg(byteArray, 2));
 
     }
+
+    [Fact]
+    public void BasicWrite()
+    {}
 }
