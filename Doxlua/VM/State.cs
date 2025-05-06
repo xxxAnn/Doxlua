@@ -22,8 +22,12 @@ namespace Doxlua.VM
         const int MAXstack_SIZE = 2^8;
         // Stack
         private Stack<IDoxValue> Stack { get; set; }
-        private Stack<IDoxValue> Envs { get; set; }
+        private Stack<DoxTable> Envs { get; set; }
 
+        public int GetStackLength()
+        {
+            return Stack.Count;
+        }
 
         // Stack operations
         public void Push(IDoxValue value)
@@ -55,7 +59,7 @@ namespace Doxlua.VM
             Globals = [];
             Consts = consts;
             Stack = new Stack<IDoxValue>();
-            Envs = new Stack<IDoxValue>();
+            Envs = new Stack<DoxTable>();
             Envs.Push(DoxTableFactory.CreateTable());
 
             InitializeDefaultGlobals();
@@ -77,7 +81,7 @@ namespace Doxlua.VM
             if (Envs.Count == 0)
                 throw new Exception("No environment to copy");
             Envs.Push(
-                Envs.Peek()
+                Envs.Peek().DeepCopy()
             );
         }
 
@@ -100,6 +104,14 @@ namespace Doxlua.VM
         public void Return(IDoxValue value)
         {
             Push(value);
+        }
+
+        public DoxTable PeekEnv()
+        {
+            // Peek the top of the env stack
+            if (Envs.Count == 0)
+                throw new Exception("No environment to peek");
+            return (DoxTable)Envs.Peek();
         }
     }
 
@@ -135,6 +147,23 @@ namespace Doxlua.VM
             var key = ((DoxString)arg[1]).GetValue();
 
             state.Return(table.Get(key));
+
+            return 0;
+        }
+        public static int SetTable(DoxState state)
+        {
+            IDoxValue[] arg = state.GetArgs(3);
+
+            if (arg[0].GetDoxType() != DoxValueType.Table)
+                return 1;
+
+            if (arg[1].GetDoxType() != DoxValueType.String && arg[1].GetDoxType() != DoxValueType.Number)
+                return 2;
+
+            var table = (DoxTable)arg[0];
+            var key = ((DoxString)arg[1]).GetValue();
+
+            table.Set(key, arg[2]);
 
             return 0;
         }

@@ -22,7 +22,7 @@ namespace Doxlua.Doxcode
         /// LoadConst FROMINDEX X X
         /// Insert Constant at FROMINDEX index onto stack
         public const byte LoadConst          = 0b0000001;
-        /// Call ARGCOUNT X X
+        /// Call ARGCOUNT RETURNCOUNT X
         /// Call function at with ARGCOUNT arguments from the stack 
         public const byte Call               = 0b0000010; 
 

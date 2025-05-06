@@ -45,18 +45,57 @@ namespace Doxlua.VM
             {
                 // GetGlobal FROMINDEX X X
                 // Insert Global at FROMINDEX index onto stack
+                var index = Doxcode.Bytecode.GetArg(code, 0);
+                state.Push(state.Globals[index]);
             }
 
             public static void LoadConst(DoxState state, byte[] code) 
             {
                 // LoadConst FROMINDEX X X
                 // Insert Constant at FROMINDEX index onto stack
+                var index = Doxcode.Bytecode.GetArg(code, 0);
+                state.Push(new DoxString(state.Consts[index]));
             }
 
             public static void Call(DoxState state, byte[] code) 
             {
-                // Call STACKINDEX ARGCOUNT X
-                // Call function at STACKINDEX index with ARGCOUNT arguments from the stack 
+                // Call ARGCOUNT RETURNCOUNT LUACSHARP
+                // Call function at with ARGCOUNT arguments from the stack 
+                var argCount = Doxcode.Bytecode.GetArg(code, 0);
+                var returnCount = Doxcode.Bytecode.GetArg(code, 1);
+                // If the function is a C# function, we can call it directly
+                // If the function is a Lua function, we have to recursively call the VM
+                // In that case we can move the Env down
+                var luacsharp = Doxcode.Bytecode.GetArg(code, 2);
+                var func = state.Pop();
+                var length = state.GetStackLength();
+                if (func is DoxFunction function) 
+                {
+                    function.GetValue()(state);
+                    // This should pop ARGCOUNT arguments from the stack
+                    // and push the return value (if any) onto the stack
+                    // So the length should be length - argCount + returnCount
+                    // Check if the length is correct
+                    if (state.GetStackLength() != length - argCount + returnCount) 
+                    {
+                        throw new Exception("Stack length mismatch");
+                    }
+
+                }
+                else 
+                {
+                    throw new Exception("Expected a function");
+                }
+            }
+
+            public static void LoadEnv(DoxState state, byte[] code)
+            {
+                // LoadEnv X X X
+                // Load the environment table onto the stack
+                // This is a special case, we need to load the environment table
+                // from the stack and push it onto the stack
+                var env = state.PeekEnv();
+                state.Push(env);
             }
         }
 

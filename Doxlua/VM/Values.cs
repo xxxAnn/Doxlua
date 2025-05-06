@@ -110,7 +110,7 @@ namespace Doxlua.VM
         }
     }
 
-    public struct DoxTable : IDoxValue
+    public class DoxTable : IDoxValue
     {
 
         private readonly Dictionary<IDoxValue, IDoxValue> _table;
@@ -152,6 +152,23 @@ namespace Doxlua.VM
         public DoxValueType GetDoxType()
         {
             return DoxValueType.Table;
+        }
+
+        public DoxTable DeepCopy()
+        {
+            var newTable = new DoxTable();
+            foreach (var kvp in _table)
+            {
+                if (kvp.Key.GetDoxType() == DoxValueType.Table)
+                {
+                    newTable.Set(kvp.Key, ((DoxTable)kvp.Key).DeepCopy());
+                }
+                else
+                {
+                    newTable.Set(kvp.Key, kvp.Value);
+                }
+            }
+            return newTable;
         }
     }
 }
