@@ -101,11 +101,20 @@ namespace Doxlua.VM
 
         public static void Write(DoxState state, byte[] code) 
         {
-
+            Modder.Get(code)(state, code);
         }
 
         public static class Modder
         {
+
+            public static Action<DoxState, byte[]> Get(byte[] code) =>
+                Doxcode.Bytecode.GetOp(code) switch {
+                    Doxcode.BytecodeOp.OpenBlock => OpenBlock,
+                    Doxcode.BytecodeOp.CloseBlock => CloseBlock,
+                    Doxcode.BytecodeOp.Pair => Pair,
+                    Doxcode.BytecodeOp.Element => Element,
+                    _ => Null
+                };
 
             public static void WriteLine(DoxState state, string line) 
             {
