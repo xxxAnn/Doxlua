@@ -13,7 +13,8 @@ namespace Doxlua.VM
         
         // Globals
         public IDoxValue[] Globals { get; set; }
-        public string[] Consts { get; set; }
+        public IDoxValue[] Consts { get; set; }
+        public DoxFunction[] Functions { get; set; }
 
         public int Indent { get; set; } = 0;
 
@@ -56,12 +57,30 @@ namespace Doxlua.VM
 
         public DoxState(string[] consts)
         {
-            Globals = [];
+            Consts = consts.Select(c => new DoxString(c) as IDoxValue).ToArray();
+            Functions = [];
+            Stack = new Stack<IDoxValue>();
+            Envs = new Stack<DoxTable>();
+            Envs.Push(DoxTableFactory.CreateTable());
+            Globals = new IDoxValue[256];
+            InitializeDefaultGlobals();
+        }
+
+        public IDoxValue GetConst(int index)
+        {
+            // Get the constant at index
+            if (index < 0 || index >= Consts.Length)
+                throw new ArgumentOutOfRangeException(nameof(index), $"index must be between 0 and {Consts.Length - 1}");
+            return Consts[index];
+        }
+
+        public DoxState(IDoxValue[] consts)
+        {
             Consts = consts;
             Stack = new Stack<IDoxValue>();
             Envs = new Stack<DoxTable>();
             Envs.Push(DoxTableFactory.CreateTable());
-
+            Globals = new IDoxValue[256];
             InitializeDefaultGlobals();
         }
 

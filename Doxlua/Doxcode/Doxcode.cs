@@ -101,6 +101,22 @@ namespace Doxlua.Doxcode
             return code;
             
         }
+
+        public static byte[] Execute(byte opcode, params byte[] args)
+        {
+            if (args.Length < 3)
+                // Fill out with 0s
+                Array.Resize(ref args, 3);
+            return ToByteArray(BytecodeMode.Execute, opcode, args);
+        }
+
+        public static byte[] Write(byte opcode, params byte[] args)
+        {
+            if (args.Length < 3)
+                // Fill out with 0s
+                Array.Resize(ref args, 3);
+            return ToByteArray(BytecodeMode.Write, opcode, args);
+        }
         
 
     }
@@ -108,11 +124,12 @@ namespace Doxlua.Doxcode
     /// <summary>
     /// Wrapper around an array of bytes[4]
     /// </summary>
-    public class DoxCode(byte[][] code, VM.IDoxValue[] consts) : IEnumerable<byte[]>, IEnumerator<byte[]>
+    public class DoxCode(byte[][] code) : IEnumerable<byte[]>, IEnumerator<byte[]>
     {
+
+        public static implicit operator DoxCode(byte[][] code) => new(code);
         
         private readonly byte[][] _code = code;
-        private readonly VM.IDoxValue[] _consts = consts;
         private int _index = -1;
 
         public byte[] Current => _code[_index];
@@ -122,13 +139,6 @@ namespace Doxlua.Doxcode
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-        }
-
-        public VM.IDoxValue GetConstant(int index)
-        {
-            if (index < 0 || index >= _consts.Length)
-                throw new ArgumentOutOfRangeException(nameof(index), $"index must be between 0 and {_consts.Length - 1}");
-            return _consts[index];
         }
 
         public IEnumerator<byte[]> GetEnumerator()

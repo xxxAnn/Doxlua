@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Doxlua.VM
 {
     public interface IDoxValue
@@ -6,6 +8,9 @@ namespace Doxlua.VM
         DoxValueType GetDoxType();
 
     }
+
+    public interface IDoxPrimitive
+    {}
 
     public enum DoxValueType : byte 
     {
@@ -23,26 +28,37 @@ namespace Doxlua.VM
     {
 
         public delegate int DoxFunctionDelegate(DoxState state);
+        public Doxcode.DoxCode? _code = null;
 
-        private DoxFunctionDelegate _function;
+        private DoxFunctionDelegate? _function = null;
 
         public DoxFunction(DoxFunctionDelegate function)
         {
             _function = function;
         }
 
-        public DoxValueType GetDoxType()
+        public DoxFunction(Doxcode.DoxCode code)
+        {
+            _code = code;
+        }
+
+        public readonly DoxValueType GetDoxType()
         {
             return DoxValueType.Function;
         }
 
-        public DoxFunctionDelegate GetValue()
+        public DoxFunctionDelegate GetFunction()
         {
             return _function;
         }
+
+        public Doxcode.DoxCode GetCode()
+        {
+            return _code;
+        }
     }
 
-    public struct DoxNil : IDoxValue
+    public struct DoxNil : IDoxValue, IDoxPrimitive
     {
         public DoxValueType GetDoxType()
         {
@@ -50,7 +66,7 @@ namespace Doxlua.VM
         }
     }
 
-    public struct DoxBoolean : IDoxValue
+    public struct DoxBoolean : IDoxValue, IDoxPrimitive
     {
         private bool _value;
 
@@ -70,7 +86,7 @@ namespace Doxlua.VM
         }
     }
 
-    public struct DoxNumber : IDoxValue
+    public struct DoxNumber : IDoxValue, IDoxPrimitive
     {
         private double _value;
 
@@ -90,7 +106,7 @@ namespace Doxlua.VM
         }
     }
 
-    public struct DoxString : IDoxValue
+    public struct DoxString : IDoxValue, IDoxPrimitive
     {
         private string _value;
 
@@ -109,7 +125,6 @@ namespace Doxlua.VM
             return _value;
         }
     }
-
     public class DoxTable : IDoxValue
     {
 

@@ -4,11 +4,11 @@ namespace Doxlua.VM
 {
     public static class DoxMachine
     {
-        public static void Run(DoxState state, Doxcode.DoxCode doxcode)
+        public static void Run(DoxState state, DoxCode doxcode)
         {
             foreach (byte[] code in doxcode) {
                 // Code
-                if (Doxcode.Bytecode.IsExecute(code)) 
+                if (Bytecode.IsExecute(code)) 
                 {
                     Execute(state, code);
                 }
@@ -54,7 +54,7 @@ namespace Doxlua.VM
                 // LoadConst FROMINDEX X X
                 // Insert Constant at FROMINDEX index onto stack
                 var index = Doxcode.Bytecode.GetArg(code, 0);
-                state.Push(new DoxString(state.Consts[index]));
+                state.Push(state.GetConst(index));
             }
 
             public static void Call(DoxState state, byte[] code) 
@@ -71,7 +71,7 @@ namespace Doxlua.VM
                 var length = state.GetStackLength();
                 if (func is DoxFunction function) 
                 {
-                    function.GetValue()(state);
+                    function.GetFunction()(state);
                     // This should pop ARGCOUNT arguments from the stack
                     // and push the return value (if any) onto the stack
                     // So the length should be length - argCount + returnCount
@@ -108,11 +108,11 @@ namespace Doxlua.VM
         {
 
             public static Action<DoxState, byte[]> Get(byte[] code) =>
-                Doxcode.Bytecode.GetOp(code) switch {
-                    Doxcode.BytecodeOp.OpenBlock => OpenBlock,
-                    Doxcode.BytecodeOp.CloseBlock => CloseBlock,
-                    Doxcode.BytecodeOp.Pair => Pair,
-                    Doxcode.BytecodeOp.Element => Element,
+                Bytecode.GetOp(code) switch {
+                    BytecodeOp.OpenBlock => OpenBlock,
+                    BytecodeOp.CloseBlock => CloseBlock,
+                    BytecodeOp.Pair => Pair,
+                    BytecodeOp.Element => Element,
                     _ => Null
                 };
 
@@ -144,16 +144,16 @@ namespace Doxlua.VM
                 // Writes the string value atop the stack to the File
                 // `STACKINDEX = {`
 
-                Modder.WriteLine(
+                WriteLine(
                     state, 
-                    Modder.ExpectString(state.Pop()) + " = {"
+                    ExpectString(state.Pop()) + " = {"
                 );
                 state.Indent++;
             }
             public static void CloseBlock(DoxState state, byte[] code) 
             {
-                Modder.WriteLine(state, "}");
                 state.Indent--;
+                WriteLine(state, "}");
             }
             public static void Pair(DoxState state, byte[] code) 
             {
@@ -161,9 +161,9 @@ namespace Doxlua.VM
                 // Writes the pair STACKINDEX1, STACKINDEX2
                 // `STACKINDEX1 = `STACKINDEX2`
                 var vals = state.Pop(2);
-                Modder.WriteLine(
+                WriteLine(
                     state, 
-                    $"{Modder.ExpectString(vals[0])} = {Modder.ExpectString(vals[1])}"
+                    $"{ExpectString(vals[0])} = {ExpectString(vals[1])}"
                 );
             }
             public static void Element(DoxState state, byte[] code) 
@@ -172,9 +172,9 @@ namespace Doxlua.VM
                 // Writes the element at STACKINDEX index
                 // `STACKINDEX`
                 var val = state.Pop();
-                Modder.WriteLine(
+                WriteLine(
                     state, 
-                    $"{Modder.ExpectString(val)}"
+                    $"{ExpectString(val)}"
                 );
             }
         }
