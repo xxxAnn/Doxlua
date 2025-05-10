@@ -4,3 +4,561 @@ if = {
     }
     do_something = yes
 }
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}
+if = {
+    limit = {
+        always = yes
+    }
+    do_something = yes
+}

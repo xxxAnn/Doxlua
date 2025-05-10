@@ -1,0 +1,4 @@
+(Identifier L1 print)
+(Punctuation L1 ParOpen)
+(Literal L1 String 'hello world')
+(Punctuation L1 ParClose)

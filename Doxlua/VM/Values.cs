@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Doxlua.Tokenizer;
 
 namespace Doxlua.VM
 {
@@ -7,6 +8,21 @@ namespace Doxlua.VM
         // Get the type of the value
         DoxValueType GetDoxType();
 
+    }
+
+    public static class IDoxValueFromLiteral
+    {
+        public static IDoxValue FromLiteral(Literal literal)
+        {
+            return literal.GetValue() switch
+            {
+                LiteralType.String => new DoxString(literal.GetInnerString()),
+                LiteralType.Number => new DoxNumber(literal.GetInnerNumber()),
+                LiteralType.Boolean => new DoxBoolean(literal.GetInnerBoolean()),
+                LiteralType.Nil => new DoxNil(),
+                _ => throw new ArgumentException("Invalid literal type")
+            };
+        }
     }
 
     public interface IDoxPrimitive
@@ -39,6 +55,7 @@ namespace Doxlua.VM
 
         public DoxFunction(Doxcode.DoxCode code)
         {
+            _function = null;
             _code = code;
         }
 

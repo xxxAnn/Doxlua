@@ -20,6 +20,10 @@ public class TokenizationTests
         // Now we can print the tokens
         var infos = tokens.Select(t => $"({t.ToString()})").ToList();
 
+        // Write the tokens to "../../../Testfiles/Basic.lua.tokens"
+        string outputPath = "../../../Testfiles/Basic.lua.tokens";
+        System.IO.File.WriteAllLines(outputPath, infos);
+
         // Print infos separated by ','
         string result = string.Join(", ", infos);
         // Print the result

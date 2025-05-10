@@ -75,7 +75,7 @@ namespace Doxlua.Tokenizer
         public const string Punctuation = "Punctuation";
     }
 
-    class LineNumberTracker(int lineNumber)
+    public class LineNumberTracker(int lineNumber)
     {
         private readonly int LineNumber = lineNumber;
 
@@ -92,7 +92,7 @@ namespace Doxlua.Tokenizer
     /// <summary>
     /// Identifier is a name that represents a variable, function, or table
     /// </summary>
-    class Identifier(string value, int lineNumber) : LineNumberTracker(lineNumber), IToken<string>
+    public class Identifier(string value, int lineNumber) : LineNumberTracker(lineNumber), IToken<string>
     {
         readonly string Value = value;
 
@@ -116,7 +116,7 @@ namespace Doxlua.Tokenizer
 // Keyword
 namespace Doxlua.Tokenizer
 {
-    enum KeywordType
+    public enum KeywordType
     {
         // Our special keywords
         effect,
@@ -148,7 +148,7 @@ namespace Doxlua.Tokenizer
     /// <summary>
     /// Keyword is a reserved word in Lua that has a special meaning
     /// </summary>
-    class Keyword(KeywordType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<KeywordType>
+    public class Keyword(KeywordType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<KeywordType>
     {
         readonly KeywordType Value = value;
 
@@ -172,7 +172,7 @@ namespace Doxlua.Tokenizer
 // Literal
 namespace Doxlua.Tokenizer
 {
-    enum LiteralType
+    public enum LiteralType
     {
         String, // contain a string
         Number, // contain an integer or float
@@ -183,12 +183,12 @@ namespace Doxlua.Tokenizer
     // the literal type is more complex than the other types
     // because it can contain a string, number, boolean, or nil
     // on top of the literaltype
-    class Literal : LineNumberTracker, IToken<LiteralType>
+    public class Literal : LineNumberTracker, IToken<LiteralType>
     {
         readonly LiteralType Type;
         readonly LiteralValue Value;
 
-        enum ValueType
+        public enum ValueType
         {
             String,
             Number,
@@ -311,7 +311,7 @@ namespace Doxlua.Tokenizer
 // Operator
 namespace Doxlua.Tokenizer 
 {
-    enum OperatorType
+    public enum OperatorType
     {
         Plus,
         Minus,
@@ -329,7 +329,7 @@ namespace Doxlua.Tokenizer
         GreaterThanOrEqual
     }
 
-    class Operator(OperatorType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<OperatorType>
+    public class Operator(OperatorType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<OperatorType>
     {
         readonly OperatorType Value = value;
 
@@ -353,7 +353,7 @@ namespace Doxlua.Tokenizer
 // Punctuation
 namespace Doxlua.Tokenizer
 {
-    enum PunctuationType
+    public enum PunctuationType
     {
         ParOpen,
         ParClose,
@@ -371,7 +371,7 @@ namespace Doxlua.Tokenizer
         EOL // end of line
     }
 
-    class Punctuation(PunctuationType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<PunctuationType>
+    public class Punctuation(PunctuationType value, int lineNumber) : LineNumberTracker(lineNumber), IToken<PunctuationType>
     {
         readonly PunctuationType Value = value;
 
