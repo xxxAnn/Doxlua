@@ -9,6 +9,9 @@ namespace Doxlua.VM
         public static readonly byte True = 1;
         public static readonly byte False = 2;
         public static readonly byte TableAccess = 3;
+        public static readonly byte SetTable = 4;
+
+        public static readonly byte SetValue = 5;
     }
     public class DoxState
     {
@@ -110,7 +113,7 @@ namespace Doxlua.VM
             if (Envs.Count == 0)
                 throw new Exception("No environment to copy");
             Envs.Push(
-                Envs.Peek().DeepCopy()
+                Envs.Peek().DeepCopy() as DoxTable ?? throw new Exception("Failed to copy environment")
             );
         }
 
@@ -142,6 +145,8 @@ namespace Doxlua.VM
             // Dynamic Global
 
             Globals[GlobalCodes.TableAccess] = new DoxFunction(FunctionMarket.TableAccess);
+            Globals[GlobalCodes.SetTable] = new DoxFunction(FunctionMarket.SetTable);
+            Globals[GlobalCodes.SetValue] = new DoxFunction(FunctionMarket.SetValue);
         }
 
         public IDoxValue[] GetArgs(int n)
@@ -200,6 +205,11 @@ namespace Doxlua.VM
 
             return 0;
         }
+        // 0 = OK
+        // 1 = Expected Table for table access
+        // 2 = Expected String or Number for table access
+        // Expected on top of the stack: [TABLE, KEY, VALUE, ...]
+        // Top of the stack after the function: [NIL, ...]
         public static int SetTable(DoxState state)
         {
             IDoxValue[] arg = state.GetArgs(3);
@@ -214,6 +224,30 @@ namespace Doxlua.VM
             var key = ((DoxString)arg[1]).GetValue();
 
             table.Set(key, arg[2]);
+
+            state.Return(new DoxNil());
+
+            return 0;
+        }
+
+        // 0 = OK
+        // 1 = Expected Table for table access
+        public static int SetValue(DoxState state)
+        {
+            IDoxValue[] arg = state.GetArgs(2);
+
+
+            var settee = arg[0];
+            var setted = arg[1];
+
+            try { 
+                settee.SetValue(setted);
+            }
+            catch (ArgumentException e)
+            {
+                // Invalid value type
+                return 1;
+            }
 
             state.Return(new DoxNil());
 

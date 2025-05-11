@@ -5,9 +5,9 @@ namespace Doxlua.VM
 {
     public interface IDoxValue
     {
-        // Get the type of the value
         DoxValueType GetDoxType();
-
+        void SetValue(IDoxValue value);
+        IDoxValue DeepCopy();
     }
 
     public static class IDoxValueFromLiteral
@@ -25,8 +25,7 @@ namespace Doxlua.VM
         }
     }
 
-    public interface IDoxPrimitive
-    {}
+    public interface IDoxPrimitive {}
 
     public enum DoxValueType : byte 
     {
@@ -36,16 +35,12 @@ namespace Doxlua.VM
         String = 3,
         Function = 4,
         Table = 5,
-        // UserData = 6,
-        // Thread = 7,
     }
 
-    public struct DoxFunction : IDoxValue
+    public class DoxFunction : IDoxValue
     {
-
         public delegate int DoxFunctionDelegate(DoxState state);
         public Doxcode.DoxCode? _code = null;
-
         private DoxFunctionDelegate? _function = null;
 
         public DoxFunction(DoxFunctionDelegate function)
@@ -59,7 +54,7 @@ namespace Doxlua.VM
             _code = code;
         }
 
-        public readonly DoxValueType GetDoxType()
+        public DoxValueType GetDoxType()
         {
             return DoxValueType.Function;
         }
@@ -78,9 +73,27 @@ namespace Doxlua.VM
         {
             return _function != null ? "DoxFunction(Function)" : "DoxFunction(Code)";
         }
+
+        public void SetValue(IDoxValue value)
+        {
+            if (value is DoxFunction function)
+            {
+                _function = function.GetFunction();
+                _code = function.GetCode();
+            }
+            else
+            {
+                throw new ArgumentException("Invalid value type");
+            }
+        }
+
+        public IDoxValue DeepCopy()
+        {
+            return _function != null ? new DoxFunction(_function) : new DoxFunction(_code!);
+        }
     }
 
-    public struct DoxNil : IDoxValue, IDoxPrimitive
+    public class DoxNil : IDoxValue, IDoxPrimitive
     {
         public DoxValueType GetDoxType()
         {
@@ -91,9 +104,22 @@ namespace Doxlua.VM
         {
             return "DoxNil(nil)";
         }
+
+        public void SetValue(IDoxValue value)
+        {
+            if (value is not DoxNil)
+            {
+                throw new ArgumentException("Invalid value type");
+            }
+        }
+
+        public IDoxValue DeepCopy()
+        {
+            return new DoxNil();
+        }
     }
 
-    public struct DoxBoolean : IDoxValue, IDoxPrimitive
+    public class DoxBoolean : IDoxValue, IDoxPrimitive
     {
         private bool _value;
 
@@ -116,9 +142,26 @@ namespace Doxlua.VM
         {
             return _value ? "DoxBoolean(true)" : "DoxBoolean(false)";
         }
+
+        public void SetValue(IDoxValue value)
+        {
+            if (value is DoxBoolean boolean)
+            {
+                _value = boolean.GetValue();
+            }
+            else
+            {
+                throw new ArgumentException("Invalid value type");
+            }
+        }
+
+        public IDoxValue DeepCopy()
+        {
+            return new DoxBoolean(_value);
+        }
     }
 
-    public struct DoxNumber : IDoxValue, IDoxPrimitive
+    public class DoxNumber : IDoxValue, IDoxPrimitive
     {
         private double _value;
 
@@ -141,9 +184,26 @@ namespace Doxlua.VM
         {
             return $"DoxNumber({_value})";
         }
+
+        public void SetValue(IDoxValue value)
+        {
+            if (value is DoxNumber number)
+            {
+                _value = number.GetValue();
+            }
+            else
+            {
+                throw new ArgumentException("Invalid value type");
+            }
+        }
+
+        public IDoxValue DeepCopy()
+        {
+            return new DoxNumber(_value);
+        }
     }
 
-    public struct DoxString : IDoxValue, IDoxPrimitive
+    public class DoxString : IDoxValue, IDoxPrimitive
     {
         private string _value;
 
@@ -166,10 +226,27 @@ namespace Doxlua.VM
         {
             return $"DoxString({_value})";
         }
+
+        public void SetValue(IDoxValue value)
+        {
+            if (value is DoxString str)
+            {
+                _value = str.GetValue();
+            }
+            else
+            {
+                throw new ArgumentException("Invalid value type");
+            }
+        }
+
+        public IDoxValue DeepCopy()
+        {
+            return new DoxString(_value);
+        }
     }
+
     public class DoxTable : IDoxValue
     {
-
         private readonly Dictionary<IDoxValue, IDoxValue> _table;
 
         public DoxTable()
@@ -211,19 +288,12 @@ namespace Doxlua.VM
             return DoxValueType.Table;
         }
 
-        public DoxTable DeepCopy()
+        public IDoxValue DeepCopy()
         {
             var newTable = new DoxTable();
             foreach (var kvp in _table)
             {
-                if (kvp.Key.GetDoxType() == DoxValueType.Table)
-                {
-                    newTable.Set(kvp.Key, ((DoxTable)kvp.Key).DeepCopy());
-                }
-                else
-                {
-                    newTable.Set(kvp.Key, kvp.Value);
-                }
+                newTable.Set(kvp.Key.DeepCopy(), kvp.Value.DeepCopy());
             }
             return newTable;
         }
@@ -231,6 +301,22 @@ namespace Doxlua.VM
         public override string ToString()
         {
             return "DoxTable(" + string.Join(", ", _table.Select(kvp => $"{kvp.Key}={kvp.Value}")) + ")";
+        }
+
+        public void SetValue(IDoxValue value)
+        {
+            if (value is DoxTable table)
+            {
+                _table.Clear();
+                foreach (var kvp in table.GetValue())
+                {
+                    _table[kvp.Key.DeepCopy()] = kvp.Value.DeepCopy();
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Invalid value type");
+            }
         }
     }
 }

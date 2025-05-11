@@ -22,7 +22,10 @@ namespace Doxlua.Lexer
 
         public byte[][] Codify(Lex lex)
         {
-            return [];
+            return [
+                ..Rhs.Codify(lex),
+                ..Lhs.Codify(lex),
+            ];
         }
 
         public override string ToString() => $"Assign:(LHS={Lhs}, RHS={Rhs})";

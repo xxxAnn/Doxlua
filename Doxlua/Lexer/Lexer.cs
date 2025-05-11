@@ -80,10 +80,13 @@ namespace Doxlua.Lexer
         public void Codify() 
         {
             List<byte[]> _code = [];
-            for (int i = 0; i < Statements.Count; i++)
+
+
+            while (Statements.Count > 0)
             {
                 // Extend code
-                _code.AddRange(Statements.Pop().Codify(this));
+                var newCode = Statements.Pop().Codify(this);
+                _code.AddRange(newCode);
             }
             code = new DoxCode([.. _code]);
             // extra logic for control flow (if control flow open get a new lex and try to codify it)
