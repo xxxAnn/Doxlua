@@ -1,4 +1,5 @@
 
+using Doxlua.VM;
 using static Doxlua.Doxcode.Bytecode;
 using static Doxlua.Doxcode.BytecodeOp;
 using static Doxlua.VM.GlobalCodes;
@@ -25,6 +26,8 @@ namespace Doxlua.Lexer
             return [
                 ..Rhs.Codify(lex),
                 ..Lhs.Codify(lex),
+                Execute(GetGlobal, GlobalCodes.SetValue),
+                Execute(Call, 2, 1, 0)
             ];
         }
 

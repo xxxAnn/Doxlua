@@ -1,13 +1,17 @@
 using Doxlua.Doxcode;
 using Doxlua.Lexer;
+using NLog;
 
 namespace Doxlua.VM
 {
     public static class DoxMachine
     {
+        public static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public static void Run(DoxState state, DoxCode doxcode)
         {
+            Logger.Debug(state.ShowStack());
             foreach (byte[] code in doxcode) {
+                Logger.Debug(DoxCode.InstructionToString(code));
                 // Code
                 if (Bytecode.IsExecute(code)) 
                 {
@@ -18,6 +22,8 @@ namespace Doxlua.VM
                     // Load
                     Write(state, code);
                 }
+                Logger.Debug("Stack after above instruction");
+                Logger.Debug(state.ShowStack());
             }
         }
 
@@ -56,7 +62,7 @@ namespace Doxlua.VM
                 // GetGlobal FROMINDEX X X
                 // Insert Global at FROMINDEX index onto stack
                 var index = Doxcode.Bytecode.GetArg(code, 0);
-                state.Push(state.Globals[index]);
+                state.Push(state.GetGlobal(index));
             }
 
             public static void LoadConst(DoxState state, byte[] code) 
@@ -82,9 +88,9 @@ namespace Doxlua.VM
                 var luacsharp = Doxcode.Bytecode.GetArg(code, 2);
                 var func = state.Pop();
                 var length = state.GetStackLength();
-                if (func is DoxFunction function) 
+                if (func.GetDoxType() == DoxValueType.Function) 
                 {
-                    function.GetFunction()(state);
+                    ((DoxFunction)func).GetFunction()(state);
                     // This should pop ARGCOUNT arguments from the stack
                     // and push the return value (if any) onto the stack
                     // So the length should be length - argCount + returnCount
@@ -110,7 +116,9 @@ namespace Doxlua.VM
                 // This is a special case, we need to load the environment table
                 // from the stack and push it onto the stack
                 var env = state.PeekEnv();
-                state.Push(env);
+                // This is fine to create a new DoxCell since env itself is a reference type
+                // We are not copying the table
+                state.Push(new DoxCell(env));
             }
         }
 
@@ -138,11 +146,11 @@ namespace Doxlua.VM
                 // Write line to file
                 File.AppendAllLines(filename, new[] { $"{new string(' ', state.Indent * 4)}{line}" });
             }
-            public static string ExpectString(IDoxValue val)
+            public static string ExpectString(DoxCell val)
             {
-                if (val is DoxString str) 
+                if (val.GetDoxType() == DoxValueType.String) 
                 {
-                    return str.GetValue();
+                    return ((DoxString)val).GetValue();
                 }
                 else 
                 {

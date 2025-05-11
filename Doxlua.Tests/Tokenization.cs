@@ -4,6 +4,7 @@
 using Xunit;
 using Doxlua.Tokenizer;
 
+[Collection("BasicSeries")]
 public class TokenizationTests
 {
     [Fact]

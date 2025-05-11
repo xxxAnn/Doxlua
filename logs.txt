@@ -1,0 +1,788 @@
+2025-05-11 13:28:53.4447|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(if)) |
+-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[WRITE][OpenBlock:40]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{1;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(limit)) |
+-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[WRITE][OpenBlock:40]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{2;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(always)) |
+-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[WRITE][Pair:42]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[WRITE][CloseBlock:41]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{4;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(do_something)) |
+-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[WRITE][Pair:42]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|[WRITE][CloseBlock:41]{0;0;0}
+
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.4519|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.5076|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{0;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{1;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{5;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{2;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{1;1;1}
+
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:28:53.5077|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.3610|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(if)) |
+-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[WRITE][OpenBlock:40]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{1;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(limit)) |
+-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[WRITE][OpenBlock:40]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{2;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(always)) |
+-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[WRITE][Pair:42]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[WRITE][CloseBlock:41]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{4;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(do_something)) |
+-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[WRITE][Pair:42]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|[WRITE][CloseBlock:41]{0;0;0}
+
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.3683|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.4204|INFO|Doxlua.Tests.LexingTests|Assign:(LHS=IdentifierExpression(a), RHS=LiteralExpression(DoxString(Hello, World!)))
+2025-05-11 13:30:38.4251|INFO|Doxlua.Tests.LexingTests|[EXECUTE][LoadConst:01]{0;0;0}
+[EXECUTE][LoadConst:01]{1;0;0}
+[EXECUTE][LoadEnv:03]{0;0;0}
+[EXECUTE][GetGlobal:00]{3;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][GetGlobal:00]{5;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][LoadConst:01]{2;0;0}
+[EXECUTE][LoadEnv:03]{0;0;0}
+[EXECUTE][GetGlobal:00]{3;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][LoadConst:01]{3;0;0}
+[EXECUTE][LoadEnv:03]{0;0;0}
+[EXECUTE][GetGlobal:00]{3;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][Call:02]{1;1;1}
+
+2025-05-11 13:30:38.4251|INFO|Doxlua.Tests.LexingTests|DoxString(Hello, World!), DoxString(a), DoxString(a), DoxString(print)
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{0;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{1;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{5;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.FunctionMarket|Settee before: DoxNil(nil)
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.FunctionMarket|Settee after: DoxString(Hello, World!)
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.FunctionMarket|ENV: DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{2;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:30:38.4251|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{1;1;1}
+
+2025-05-11 13:30:38.4287|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:30:38.4287|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.7902|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{0;0;0}
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(if)) |
+-------------------
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|[WRITE][OpenBlock:40]{0;0;0}
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{1;0;0}
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(limit)) |
+-------------------
+
+2025-05-11 13:31:20.7974|DEBUG|Doxlua.VM.DoxMachine|[WRITE][OpenBlock:40]{0;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{2;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(always)) |
+-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[WRITE][Pair:42]{0;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[WRITE][CloseBlock:41]{0;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{4;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(do_something)) |
+-------------------
+| String(DoxString(yes)) |
+-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[WRITE][Pair:42]{0;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|[WRITE][CloseBlock:41]{0;0;0}
+
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.7997|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.8495|INFO|Doxlua.Tests.LexingTests|Assign:(LHS=IdentifierExpression(a), RHS=LiteralExpression(DoxString(Hello, World!)))
+2025-05-11 13:31:20.8541|INFO|Doxlua.Tests.LexingTests|[EXECUTE][LoadConst:01]{0;0;0}
+[EXECUTE][LoadConst:01]{1;0;0}
+[EXECUTE][LoadEnv:03]{0;0;0}
+[EXECUTE][GetGlobal:00]{3;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][GetGlobal:00]{5;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][LoadConst:01]{2;0;0}
+[EXECUTE][LoadEnv:03]{0;0;0}
+[EXECUTE][GetGlobal:00]{3;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][LoadConst:01]{3;0;0}
+[EXECUTE][LoadEnv:03]{0;0;0}
+[EXECUTE][GetGlobal:00]{3;0;0}
+[EXECUTE][Call:02]{2;1;0}
+[EXECUTE][Call:02]{1;1;1}
+
+2025-05-11 13:31:20.8541|INFO|Doxlua.Tests.LexingTests|DoxString(Hello, World!), DoxString(a), DoxString(a), DoxString(print)
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|-------------------
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{0;0;0}
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{1;0;0}
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:31:20.8541|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{5;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.FunctionMarket|Settee before: DoxNil(nil)
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.FunctionMarket|Settee after: DoxString(Hello, World!)
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.FunctionMarket|ENV: DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{2;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(a)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadConst:01]{3;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][LoadEnv:03]{0;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][GetGlobal:00]{3;0;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| Table(DoxTable(DoxString(print)=DoxFunction(Function), DoxString(a)=DoxString(Hello, World!))) |
+-------------------
+| String(DoxString(print)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{2;1;0}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Function(DoxFunction(Function)) |
+-------------------
+| String(DoxString(Hello, World!)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|[EXECUTE][Call:02]{1;1;1}
+
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|Stack after above instruction
+2025-05-11 13:31:20.8557|DEBUG|Doxlua.VM.DoxMachine|-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+| Nil(DoxNil(nil)) |
+-------------------
+

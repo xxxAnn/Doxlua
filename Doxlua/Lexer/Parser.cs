@@ -146,7 +146,6 @@ namespace Doxlua.Lexer
                 Expression
             );
 
-
         public static Parser<IToken, IExpression> Assignable =>
             Expression.Where(expr =>
                 expr is IdentifierExpression

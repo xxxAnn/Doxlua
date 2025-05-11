@@ -1,3 +1,5 @@
-print("hello world")
+a = "Hello, World!"
 
-a[1].b = 0
+-- some comment which will be ignored
+
+print(a)

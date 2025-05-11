@@ -8,6 +8,7 @@ using static Doxlua.Doxcode.Bytecode;
 
 namespace Doxlua.Tests
 {
+    [Collection("BasicSeries")]
     public class BytecodeTests
     {
         [Fact]

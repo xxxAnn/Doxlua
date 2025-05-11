@@ -27,8 +27,13 @@ namespace Doxlua.VM
 
         const int MAXstack_SIZE = 2^8;
         // Stack
-        private Stack<IDoxValue> Stack { get; set; }
+        private Stack<DoxCell> Stack { get; set; }
         private Stack<DoxTable> Envs { get; set; }
+
+        public DoxCell GetGlobal(int index)
+        {
+            return new DoxCell(Globals[index]);
+        }
 
         public int GetStackLength()
         {
@@ -36,17 +41,17 @@ namespace Doxlua.VM
         }
 
         // Stack operations
-        public void Push(IDoxValue value)
+        public void Push(DoxCell value)
         {
             if (Stack.Count >= MAXstack_SIZE)
                 // Stack overflow
                 throw new Exception("Stack overflow");
             Stack.Push(value);
         }
-        public IDoxValue[] Pop(int n)
+        public DoxCell[] Pop(int n)
         {
             // Pop n values from the stack
-            IDoxValue[] values = new IDoxValue[n];
+            DoxCell[] values = new DoxCell[n];
             for (int i = 0; i < n; i++)
             {
                 values[i] = Stack.Pop();
@@ -54,7 +59,7 @@ namespace Doxlua.VM
             return values;
         }
 
-        public IDoxValue Pop()
+        public DoxCell Pop()
         {
             // Pop one value from the stack
             return Stack.Pop();
@@ -64,19 +69,19 @@ namespace Doxlua.VM
         {
             Consts = consts.Select(c => new DoxString(c) as IDoxValue).ToArray();
             Functions = [];
-            Stack = new Stack<IDoxValue>();
+            Stack = new Stack<DoxCell>();
             Envs = new Stack<DoxTable>();
             Envs.Push(DoxTableFactory.CreateTable());
             Globals = new IDoxValue[256];
             InitializeDefaultGlobals();
         }
 
-        public IDoxValue GetConst(int index)
+        public DoxCell GetConst(int index)
         {
             // Get the constant at index
             if (index < 0 || index >= Consts.Length)
                 throw new ArgumentOutOfRangeException(nameof(index), $"index must be between 0 and {Consts.Length - 1}");
-            return Consts[index];
+            return new DoxCell(Consts[index]);
         }
 
         public IDoxValue Peek()
@@ -90,7 +95,7 @@ namespace Doxlua.VM
         public DoxState(IDoxValue[] consts)
         {
             Consts = consts;
-            Stack = new Stack<IDoxValue>();
+            Stack = new Stack<DoxCell>();
             Envs = new Stack<DoxTable>();
             Envs.Push(DoxTableFactory.CreateTable());
             Globals = new IDoxValue[256];
@@ -149,14 +154,19 @@ namespace Doxlua.VM
             Globals[GlobalCodes.SetValue] = new DoxFunction(FunctionMarket.SetValue);
         }
 
-        public IDoxValue[] GetArgs(int n)
+        public DoxCell[] GetArgs(int n)
         {
             return Pop(n);
         }
 
-        public void Return(IDoxValue value)
+        public void Return(DoxCell value)
         {
             Push(value);
+        }
+
+        public void Return() 
+        {
+            Push(new DoxCell(new DoxNil()));
         }
 
         public DoxTable PeekEnv()
@@ -173,109 +183,9 @@ namespace Doxlua.VM
         public static DoxTable CreateTable()
         {
             var table = new DoxTable();
-            table.Set("print", new DoxFunction(FunctionMarket.PrintFunction));
+            table.Set(new DoxCell(new DoxString("print")), new DoxCell(new DoxFunction(FunctionMarket.PrintFunction)));
 
             return table;
         }
-    }
-
-    public static class FunctionMarket
-    {
-
-        // 0 = OK
-        // 1 = Expected Table for table access
-        // 2 = Expected String or Number for table access
-        // Expected on top of the stack: [TABLE, KEY, ...]
-        // Top of the stack after the function: [VALUE, ...]
-
-        public static int TableAccess(DoxState state)
-        {
-            IDoxValue[] arg = state.GetArgs(2);
-
-            if (arg[0].GetDoxType() != DoxValueType.Table)
-                return 1;
-
-            if (arg[1].GetDoxType() != DoxValueType.String && arg[1].GetDoxType() != DoxValueType.Number)
-                return 2;
-
-            var table = (DoxTable)arg[0];
-            var key = ((DoxString)arg[1]).GetValue();
-
-            state.Return(table.Get(key));
-
-            return 0;
-        }
-        // 0 = OK
-        // 1 = Expected Table for table access
-        // 2 = Expected String or Number for table access
-        // Expected on top of the stack: [TABLE, KEY, VALUE, ...]
-        // Top of the stack after the function: [NIL, ...]
-        public static int SetTable(DoxState state)
-        {
-            IDoxValue[] arg = state.GetArgs(3);
-
-            if (arg[0].GetDoxType() != DoxValueType.Table)
-                return 1;
-
-            if (arg[1].GetDoxType() != DoxValueType.String && arg[1].GetDoxType() != DoxValueType.Number)
-                return 2;
-
-            var table = (DoxTable)arg[0];
-            var key = ((DoxString)arg[1]).GetValue();
-
-            table.Set(key, arg[2]);
-
-            state.Return(new DoxNil());
-
-            return 0;
-        }
-
-        // 0 = OK
-        // 1 = Expected Table for table access
-        public static int SetValue(DoxState state)
-        {
-            IDoxValue[] arg = state.GetArgs(2);
-
-
-            var settee = arg[0];
-            var setted = arg[1];
-
-            try { 
-                settee.SetValue(setted);
-            }
-            catch (ArgumentException e)
-            {
-                // Invalid value type
-                return 1;
-            }
-
-            state.Return(new DoxNil());
-
-            return 0;
-        }
-        public static int PrintFunction(DoxState state)
-        {
-            IDoxValue[] arg = state.GetArgs(1);
-
-            string str = arg[0].GetDoxType() switch
-            {
-                DoxValueType.Nil => "nil",
-                DoxValueType.Boolean => ((DoxBoolean)arg[0]).GetValue().ToString(),
-                DoxValueType.Number => ((DoxNumber)arg[0]).GetValue().ToString(),
-                DoxValueType.String => ((DoxString)arg[0]).GetValue(),
-                _ => "unknown"
-            };
-
-            if (str == "unknown")
-                return 1;
-
-            Console.WriteLine(str);
-
-            state.Return(new DoxNil());
-
-            return 0;
-        }
-
-
     }
 }

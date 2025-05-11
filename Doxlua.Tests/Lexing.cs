@@ -1,40 +1,41 @@
-namespace Doxlua.Tests;
-
-
-using Xunit;
 using Doxlua.Tokenizer;
 using Doxlua.Lexer;
-using Pidgin;
 using Doxlua.VM;
+using NLog;
 
-public class LexingTests
+namespace Doxlua.Tests
 {
-    [Fact]
-    public void BasicFile()
+    [Collection("BasicSeries")]
+    public class LexingTests
     {
-        // The file is Doxlua.Tests/Testfiles/Basic.lua
-        // We want to get its tokenization
-        // First, let's read the file
-        string filePath = "../../../Testfiles/Verybasic.lua";
-        string fileContent = System.IO.File.ReadAllText(filePath);
-        // Now we can tokenize it
-        var tokens = LuaTokenizer.Tokenize(fileContent) ?? [];
-        var infos = tokens.Select(t => $"({t})").ToList();
-
-        string outputPath = "../../../Testfiles/Verybasic.lua.tokens";
-        System.IO.File.WriteAllLines(outputPath, infos);
-
-        var statements = StatementParser.ParseStatements(tokens);
-
-        foreach (var statement in statements)
+        public static Logger Logger = LogManager.GetCurrentClassLogger();
+        [Fact]
+        public void BasicFile()
         {
-            Console.WriteLine(statement);
+            // The file is Doxlua.Tests/Testfiles/Basic.lua
+            // We want to get its tokenization
+            // First, let's read the file
+            string filePath = "../../../Testfiles/Verybasic.lua";
+            string fileContent = File.ReadAllText(filePath);
+            // Now we can tokenize it
+            IEnumerable<IToken> tokens = LuaTokenizer.Tokenize(fileContent) ?? [];
+            List<string> infos = tokens.Select(static t => $"({t})").ToList();
+
+            string outputPath = "../../../Testfiles/Verybasic.lua.tokens";
+            File.WriteAllLines(outputPath, infos);
+
+            IStatement[] statements = StatementParser.ParseStatements(tokens);
+
+            foreach (IStatement statement in statements)
+            {
+                Logger.Info(statement);
+            }
+            Rootlex expr = new Rootlex(tokens);
+
+            Logger.Info(expr.GetCode());
+            Logger.Info(string.Join(", ", expr.GetConsts().Select(static c => c.ToString())));
+
+            DoxMachine.Run(expr);
         }
-        var expr = new Rootlex(tokens);
-
-        Console.WriteLine(expr.GetCode());
-        Console.WriteLine(string.Join(", ", expr.GetConsts().Select(c => c.ToString())));
-
-        DoxMachine.Run(expr);
     }
 }

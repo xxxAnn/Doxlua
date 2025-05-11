@@ -1,7 +1,7 @@
 using Doxlua.Doxcode;
 using Doxlua.Tokenizer;
 using Doxlua.VM;
-
+using Microsoft.VisualBasic;
 using Roll = System.Collections.Generic.IEnumerable<Doxlua.Tokenizer.IToken>;
 
 namespace Doxlua.Lexer
@@ -45,11 +45,18 @@ namespace Doxlua.Lexer
         // It either in EXECUTE {0}, WRITE (e) {1}, WRITE (t) {2} or WRITE (v) {3} mode
         // Statements will be parsed differently in either mode
         int context = 0;
+        static readonly List<PunctuationType> banned = [PunctuationType.Comment, PunctuationType.MultilineComment, PunctuationType.EOL];
+
 
 // Root construct
         public Lex(Roll tokens, Rootlex root)
         {
-            Statements = new(StatementParser.ParseStatements(tokens).Reverse());
+            Statements = new(StatementParser.ParseStatements(
+                tokens.Where(x =>
+                    x is not Punctuation p || !banned.Contains(p.GetValue())
+            )
+            
+            ).Reverse());
             Root = root;
         }
 
