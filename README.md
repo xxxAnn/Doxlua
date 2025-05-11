@@ -2,47 +2,50 @@
 
 Execute Mode
 
-`GetGlobal FROMINDEX X X`
-Insert Global at FROMINDEX index onto stack
+`GetGlobal FROMINDEX X X`<br>
+Insert Global at FROMINDEX index onto stack<br>
 GetGlobal        
 
-`LoadConst FROMINDEX X X`
-Insert Constant at FROMINDEX index onto stack
+`LoadConst FROMINDEX X X`<br>
+Insert Constant at FROMINDEX index onto stack<br>
 LoadConst
 
-`Call ARGCOUNT RETURNCOUNT X`
-Call function at with ARGCOUNT arguments from the stack 
+`Call ARGCOUNT RETURNCOUNT X`<br>
+Call function at with ARGCOUNT arguments from the stack <br>
 Call
 
 
-`LoadEnv X X X`
-Load the environment table onto the stack
+`LoadEnv X X X`<br>
+Load the environment table onto the stack<br>
 LoadEnv
 
 
 Write Mode
 
-`Write X X X`
-Writes the string value atop the stack
-`STACKINDEX = {`
+`Write X X X`<br>
+Writes the string value atop the stack<br>
+`STACKINDEX = {`<br>
 OpenBlock
 
-`Write X X X`
-Writes the end of the block
-`}`
+`Write X X X`<br>
+Writes the end of the block<br>
+`}`<br>
 CloseBlock
 
-`Write X X X`
-Writes the pair of the two elements atop the stack
-`STACKINDEX1 = `STACKINDEX2`
+`Write X X X`<br>
+Writes the pair of the two elements atop the stack<br>
+`STACKINDEX1 = STACKINDEX2`<br>
 Pair
 
-`Write X X X`
-Writes the element atop the stack
-`STACKINDEX`
+`Write X X X`<br>
+Writes the element atop the stack<br>
+`STACKINDEX`<br>
 Element
 
 ### Globals
 
-`TableAccess TABLE KEY`
+`TableAccess TABLE KEY` (3)
 Access KEY of the table 
+
+`SetValue KEY VALUE` (5)
+Set KEY to VALUE
