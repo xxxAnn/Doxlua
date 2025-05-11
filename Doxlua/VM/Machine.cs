@@ -1,4 +1,5 @@
 using Doxlua.Doxcode;
+using Doxlua.Lexer;
 
 namespace Doxlua.VM
 {
@@ -20,6 +21,14 @@ namespace Doxlua.VM
             }
         }
 
+        public static void Run(Rootlex lex)
+        {
+            Run(
+                new DoxState(lex.GetConsts()),
+                lex.GetCode()
+            );
+        }
+
         public static void Execute(DoxState state, byte[] code) {
            Executor.Get(code)(state, code);
         }
@@ -33,6 +42,7 @@ namespace Doxlua.VM
                     Doxcode.BytecodeOp.GetGlobal => GetGlobal,
                     Doxcode.BytecodeOp.LoadConst => LoadConst,
                     Doxcode.BytecodeOp.Call      => Call,
+                    Doxcode.BytecodeOp.LoadEnv  => LoadEnv,
                     _ => Null
                 };
 
@@ -59,6 +69,9 @@ namespace Doxlua.VM
 
             public static void Call(DoxState state, byte[] code) 
             {
+                //Console.WriteLine("Stack before function call.");
+                //Console.WriteLine(state.ShowStack());
+
                 // Call ARGCOUNT RETURNCOUNT LUACSHARP
                 // Call function at with ARGCOUNT arguments from the stack 
                 var argCount = Doxcode.Bytecode.GetArg(code, 0);
@@ -76,6 +89,8 @@ namespace Doxlua.VM
                     // and push the return value (if any) onto the stack
                     // So the length should be length - argCount + returnCount
                     // Check if the length is correct
+                    //Console.WriteLine("Stack after function call.");
+                    //Console.WriteLine(state.ShowStack());
                     if (state.GetStackLength() != length - argCount + returnCount) 
                     {
                         throw new Exception("Stack length mismatch");

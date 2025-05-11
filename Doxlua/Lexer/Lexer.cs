@@ -25,6 +25,16 @@ namespace Doxlua.Lexer
             return consts.Count - 1;
         }
 
+        public DoxCode GetCode()
+        {
+            return root.CodifyOrGetCode();
+        }
+
+        public IDoxValue[] GetConsts()
+        {
+            return consts.ToArray();
+        }
+
     }
     public class Lex 
     {
@@ -41,6 +51,13 @@ namespace Doxlua.Lexer
         {
             Statements = new(StatementParser.ParseStatements(tokens).Reverse());
             Root = root;
+        }
+
+        public DoxCode CodifyOrGetCode()
+        {
+            if (code == null)
+                Codify();
+            return code;
         }
 
 // Sublex construct (this will happen when this is a function call)
@@ -62,15 +79,24 @@ namespace Doxlua.Lexer
 
         public void Codify() 
         {
-            List<byte[]> code = new();
+            List<byte[]> _code = [];
             for (int i = 0; i < Statements.Count; i++)
             {
-                code.Add(Statements.Pop().Codify(this));
+                // Extend code
+                _code.AddRange(Statements.Pop().Codify(this));
             }
+            code = new DoxCode([.. _code]);
             // extra logic for control flow (if control flow open get a new lex and try to codify it)
             // if THIS IS STATEMENT_CONTROL_FLOW_START or ASSIGN(, FUNCTION_DEFINE_EXPRESSION)
             // then we need to create a new lex and codify it
             // if THIS IS STATEMENT_CONTROL_FLOW_END then we return
+        }
+
+        public DoxCode GetCode()
+        {
+            if (code == null)
+                throw new Exception("Attempt to get code from Lex without code");
+            return code;
         }
 
         public DoxFunction AsFunction()

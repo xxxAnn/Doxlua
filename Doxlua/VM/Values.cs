@@ -73,6 +73,11 @@ namespace Doxlua.VM
         {
             return _code;
         }
+
+        public override string ToString()
+        {
+            return _function != null ? "DoxFunction(Function)" : "DoxFunction(Code)";
+        }
     }
 
     public struct DoxNil : IDoxValue, IDoxPrimitive
@@ -80,6 +85,11 @@ namespace Doxlua.VM
         public DoxValueType GetDoxType()
         {
             return DoxValueType.Nil;
+        }
+
+        public override string ToString()
+        {
+            return "DoxNil(nil)";
         }
     }
 
@@ -101,6 +111,11 @@ namespace Doxlua.VM
         {
             return _value;
         }
+
+        public override string ToString()
+        {
+            return _value ? "DoxBoolean(true)" : "DoxBoolean(false)";
+        }
     }
 
     public struct DoxNumber : IDoxValue, IDoxPrimitive
@@ -121,6 +136,11 @@ namespace Doxlua.VM
         {
             return _value;
         }
+
+        public override string ToString()
+        {
+            return $"DoxNumber({_value})";
+        }
     }
 
     public struct DoxString : IDoxValue, IDoxPrimitive
@@ -140,6 +160,11 @@ namespace Doxlua.VM
         public string GetValue()
         {
             return _value;
+        }
+
+        public override string ToString()
+        {
+            return $"DoxString({_value})";
         }
     }
     public class DoxTable : IDoxValue
@@ -201,6 +226,11 @@ namespace Doxlua.VM
                 }
             }
             return newTable;
+        }
+
+        public override string ToString()
+        {
+            return "DoxTable(" + string.Join(", ", _table.Select(kvp => $"{kvp.Key}={kvp.Value}")) + ")";
         }
     }
 }

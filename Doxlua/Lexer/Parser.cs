@@ -76,11 +76,9 @@ namespace Doxlua.Lexer
                 IExpression result = a;
                 foreach (var suffix in b)
                 {
-                    Console.WriteLine($"Suffix: {suffix}");
                     switch (suffix)
                     {
                         case FieldAccessSuffix fieldAccess:
-                            Console.WriteLine($"Field Access: {fieldAccess.Identifier}");
                             result = new FieldAccessExpression(result, fieldAccess.Identifier);
                             break;
                         case IndexAccessSuffix indexAccess:

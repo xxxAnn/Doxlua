@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Doxlua.VM
 {
 
@@ -74,6 +76,14 @@ namespace Doxlua.VM
             return Consts[index];
         }
 
+        public IDoxValue Peek()
+        {
+            // Peek the top of the stack
+            if (Stack.Count == 0)
+                throw new Exception("No value to peek");
+            return Stack.Peek();
+        }
+
         public DoxState(IDoxValue[] consts)
         {
             Consts = consts;
@@ -102,6 +112,25 @@ namespace Doxlua.VM
             Envs.Push(
                 Envs.Peek().DeepCopy()
             );
+        }
+
+        public string ShowStack()
+        {
+            // We show the stack as
+            // -------------------
+            // | DoxValue(value) |
+            // -------------------
+            // | DoxValue(value) |
+            // -------------------
+
+            var sb = new StringBuilder();
+            sb.AppendLine("-------------------");
+            foreach (var value in Stack)
+            {
+                sb.AppendLine($"| {value.GetDoxType()}({value}) |");
+                sb.AppendLine("-------------------");
+            }
+            return sb.ToString();
         }
 
         private void InitializeDefaultGlobals()
@@ -151,6 +180,8 @@ namespace Doxlua.VM
         // 0 = OK
         // 1 = Expected Table for table access
         // 2 = Expected String or Number for table access
+        // Expected on top of the stack: [TABLE, KEY, ...]
+        // Top of the stack after the function: [VALUE, ...]
 
         public static int TableAccess(DoxState state)
         {
@@ -184,6 +215,8 @@ namespace Doxlua.VM
 
             table.Set(key, arg[2]);
 
+            state.Return(new DoxNil());
+
             return 0;
         }
         public static int PrintFunction(DoxState state)
@@ -203,6 +236,8 @@ namespace Doxlua.VM
                 return 1;
 
             Console.WriteLine(str);
+
+            state.Return(new DoxNil());
 
             return 0;
         }

@@ -5,6 +5,7 @@ using Xunit;
 using Doxlua.Tokenizer;
 using Doxlua.Lexer;
 using Pidgin;
+using Doxlua.VM;
 
 public class LexingTests
 {
@@ -23,9 +24,17 @@ public class LexingTests
         string outputPath = "../../../Testfiles/Verybasic.lua.tokens";
         System.IO.File.WriteAllLines(outputPath, infos);
 
+        var statements = StatementParser.ParseStatements(tokens);
 
-        var expr = StatementParser.Statement.ParseOrThrow(tokens);
+        foreach (var statement in statements)
+        {
+            Console.WriteLine(statement);
+        }
+        var expr = new Rootlex(tokens);
 
-        Console.WriteLine(expr);
+        Console.WriteLine(expr.GetCode());
+        Console.WriteLine(string.Join(", ", expr.GetConsts().Select(c => c.ToString())));
+
+        DoxMachine.Run(expr);
     }
 }

@@ -162,6 +162,43 @@ namespace Doxlua.Doxcode
             _index = -1;
         }
 
+        public override string ToString()
+        {
+            var sb = new System.Text.StringBuilder();
+            foreach (var instr in _code)
+            {
+                string mode = Bytecode.IsExecute(instr) ? "EXECUTE" : "WRITE";
+                byte opcode = Bytecode.GetOp(instr);
+
+                string opname = opcode switch
+                {
+                    BytecodeOp.GetGlobal => nameof(BytecodeOp.GetGlobal),
+                    BytecodeOp.LoadConst => nameof(BytecodeOp.LoadConst),
+                    BytecodeOp.Call => nameof(BytecodeOp.Call),
+                    BytecodeOp.LoadEnv => nameof(BytecodeOp.LoadEnv),
+                    BytecodeOp.OpenBlock => nameof(BytecodeOp.OpenBlock),
+                    BytecodeOp.CloseBlock => nameof(BytecodeOp.CloseBlock),
+                    BytecodeOp.Pair => nameof(BytecodeOp.Pair),
+                    BytecodeOp.Element => nameof(BytecodeOp.Element),
+                    _ => "UNKNOWN"
+                };
+
+                sb.Append($"[{mode}][{opname}:{opcode:X2}]{{");
+
+                int numArgs = Bytecode.NumArgs(instr);
+                for (int i = 0; i < numArgs; i++)
+                {
+                    sb.Append(instr[i + 1]);
+                    if (i < numArgs - 1)
+                        sb.Append(';');
+                }
+
+                sb.AppendLine("}");
+            }
+
+            return sb.ToString();
+        }
+
     }
 
     
